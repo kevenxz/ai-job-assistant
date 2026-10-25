@@ -1,0 +1,45 @@
+{
+  "name": "aijob",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "description": "AI 求职助手：BOSS 直聘岗位分析、简历定制、招呼语与 HR 回复草稿（本地运行）",
+  "scripts": {
+    "dev": "concurrently -n server,web -c blue,magenta \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "tsx watch apps/server/src/index.ts",
+    "dev:web": "vite --config apps/web/vite.config.ts",
+    "build": "npm run build:web && npm run build:extension",
+    "build:web": "vite build --config apps/web/vite.config.ts",
+    "build:extension": "node apps/extension/build.mjs",
+    "start": "tsx apps/server/src/index.ts",
+    "typecheck": "tsc -p apps/server/tsconfig.json --noEmit && tsc -p apps/web/tsconfig.json --noEmit && tsc -p apps/extension/tsconfig.json --noEmit",
+    "test": "node --import tsx --test apps/server/test/*.test.ts"
+  },
+  "dependencies": {
+    "@fastify/multipart": "^10.1.6",
+    "@fastify/static": "^10.1.7",
+    "dotenv": "^18.0.8",
+    "fastify": "^5.12.7",
+    "lucide-react": "^1.61.0",
+    "mammoth": "^1.13.0",
+    "playwright-core": "^1.64.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "unpdf": "^1.9.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.6",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}
